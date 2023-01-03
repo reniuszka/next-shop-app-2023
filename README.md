@@ -7,8 +7,8 @@ a) add files to our repositorium: git add . (adds all files)
 aa) git status
 ab) git restore --staged package.json (by wycofac plik z naszego lokalnego repozytorium)
 ac) git commit -m 'first commit' -> commit tylko w moim lokalnym repozytorium
-ad) git log
-b) push do githuba
+ad) git log (nowsze commity sa wyzej)
+b) push do githuba: git push
 MY NOTES:
 
 script : 'dev' w package json to alias na next dev
