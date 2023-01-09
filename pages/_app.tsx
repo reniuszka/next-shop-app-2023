@@ -1,13 +1,17 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-
+import { QueryClientProvider, QueryClient } from "react-query";
+//ssr dla postow, dla wall na fb - kazdy ma inne, gdy wejde w moj profil tez mam inne dane niz inni
 // _app.tsx to rodzic wszystkich rodzicow
-
+//client to taki cash
+const client = new QueryClient();
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <p className="text-5xl text-red-500 text-center">eloo</p>
-      <Component {...pageProps} />
+      <QueryClientProvider client={client}>
+        {/* <p className="text-5xl text-red-500 text-center">eloo</p> */}
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </>
   );
 }
