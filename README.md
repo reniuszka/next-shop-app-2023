@@ -35,6 +35,13 @@ b) push do githuba: git push
    git push
    github - compare and pull request - create pull request (prosba o wprowadzenie zmian)
 
+7. yarn add react-markdown I POTEM YARN DEV //https://github.com/remarkjs/react-markdown
+
+8. yarn add --dev @tailwindcss/typography by dodac style dla markdownu bo tailwind ich nie renderuje i dodac go to pliku tailwinda.config.js
+
+9. do seo zamiast next/head i meta tagi mozna uzyc next/seo: yarn add next-seo
+   https://github.com/garmeeh/next-seo - przyklady jak dodac to do fb; uzywamy tez https://ogp.me/ ktoe pokazuja potem np w google poprawnie nasze linki w seo
+
    MY NOTES:
    w Request Headers ja wysylam co rozumiem : Accept: image/avif,image/webp,image/apng,image/svg+xml,image/_,_/\*;q=0.8
 
@@ -73,7 +80,16 @@ lint:
 
 commit -> save
 
-terminal - git status
+terminal - git status - git add . -> git commit -m 'read changes' i wtedy git pull origin main by dodac ten plik utworzony github: $ git pull origin main
+From https://github.com/reniuszka/next-shop-app-2023
+
+- branch main -> FETCH_HEAD
+  Merge made by the 'recursive' strategy.
+  .github/workflows/lint.js.yml | 21 +++++++++++++++++++++
+  1 file changed, 21 insertions(+)
+  create mode 100644 .github/workflows/lint.js.yml
+
+i potem git push
 //najedz ctrl + alt na Footer i widze caly kod
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

@@ -6,6 +6,7 @@ import { ProductDetails, ProductListItem } from "../components/Product";
 import { Main } from "../components/Main";
 // import Image from "next/image";
 import { ReactNode } from "react";
+import { Layout } from "../components/Layout";
 //najedz alt na Footer i widze caly kod
 
 const DATA = {
@@ -70,25 +71,27 @@ const DATA = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-teal-800">
-      <Header />
-      <Main>
-        <ProductListItem data={DATA} />
-        {/* <ProductDetails data={DATA} /> */}
-      </Main>
-      {/* <main className="flex-grow w-full px-4 py-2 mx-auto bg-orange-200 text-center grid sm:grid-cols-2 gap-6">
-        <Product data={DATA} /> */}
-      {/* <Image
-          src={DATA.thumbnailUrl}
-          width={500}
-          height={500}
-          alt={DATA.thumbnailAlt}
-        />
-        {/* lorem40 */}
-      {/* <p>{DATA.description}</p>
-        <Rating rating={DATA.rating} /> */}
-      {/* </main> */}
-      <Footer />
-    </div>
+    // <Layout>
+    // {/* <div className="flex flex-col min-h-screen bg-teal-800"> */}
+    // {/* <Header /> */}
+    <Main>
+      <ProductListItem data={DATA} />
+      {/* <ProductDetails data={DATA} /> */}
+    </Main>
+    // {/* <main className="flex-grow w-full px-4 py-2 mx-auto bg-orange-200 text-center grid sm:grid-cols-2 gap-6">
+    //   <Product data={DATA} /> */}
+    // {/* <Image
+    //     src={DATA.thumbnailUrl}
+    //     width={500}
+    //     height={500}
+    //     alt={DATA.thumbnailAlt}
+    //   />
+    //   {/* lorem40 */}
+    // {/* <p>{DATA.description}</p>
+    //   <Rating rating={DATA.rating} /> */}
+    // {/* </main> */}
+    // {/* <Footer /> */}
+    // {/* </div> */}
+    // </Layout>
   );
 }
