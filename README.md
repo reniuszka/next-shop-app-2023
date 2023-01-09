@@ -32,6 +32,9 @@ b) push do githuba: git push
    git add .
    git commit -m 'feat: Add products'
 
+   git push
+   github - compare and pull request - create pull request (prosba o wprowadzenie zmian)
+
    MY NOTES:
    w Request Headers ja wysylam co rozumiem : Accept: image/avif,image/webp,image/apng,image/svg+xml,image/_,_/\*;q=0.8
 
@@ -43,6 +46,34 @@ create \_document.tsx by np dodac jezyk pl dla html lang='pl' - TEN DOC JEST REN
 
 możemy wrócić do pierwszej zakładki przez alt + 1 lub poprzedniej przez ctrl + page up lub następnej ctrl + page down w VSC. Możemy też wyszukać otwarty plik przez ctrl + p.
 
+lintowanie - najlepsze praktyki pisania kodu na naszym komputerze
+
+githubActions - lintuje nam w chmurze kod na githubie na seerwerze przy wrzucenie pulla, zawsze gdy pojawia sie kod np w nowym branchu -> github - Actions -> Node -> lint.js.yml (zmien nazwe pliku):
+name: Lint
+//when
+on:
+pull_request:
+branches: [ "main" ]
+
+jobs:
+lint:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'yarn'
+    - run: yarn install
+    - run: yarn lint
+
+commit -> save
+
+terminal - git status
 //najedz ctrl + alt na Footer i widze caly kod
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
