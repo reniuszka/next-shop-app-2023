@@ -43,7 +43,7 @@ const ProductsPage = ({
 
 //SSG - dane sa generowane za wczasu, ta fcja wykona sie tylko raz w trakcie buildowania aplikacji w trakcie wrzucenia jej na serwer (produkcje) -> yarn build i jak otwaorzymy apke yarn start i wejdziemy na /products to w network w fetch/XHR nie ma zapytania do serwera fakeAPI bo w trakcie buildowania to poszlo ten request, wykonany raz, ta fcja zostala wyrzucona z builda bo wykonala swoje zadanie i component zostal wygenerowany
 export const getStaticProps = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
+  const res = await fetch("https://naszsklep-api.vercel.app/api/products/");
   const data: StoreApiResponse[] = await res.json();
   // console.log("daaaata", data);
 
@@ -83,7 +83,7 @@ export default ProductsPage;
 // const getStatic Props wykona sie w czasie budowania aplikacji, te dane sa zwrocone z funkcji i te dane sa zaposrednictwem next przechowywane i w momencie gdy my odwiedzimy tą strone to sa  przekazane to ssg_productsPage a getStaticProps zostanie usuniete przez next automatycznie i tylko jej dzialanie bedzie dostepne
 // const getStaticProps = async () => {
 //   //fetch obiecuje ze dane kiedys przyjda z jakiegos serwera i na te dane czekam( a nie wiem czy one przyjda czy nie)
-//   const response = await fetch("https://fakestoreapi.com/products/");
+//   const response = await fetch("https://naszsklep-api.vercel.app/api/products//");
 //   //chcemy powiedziec w jakies formacie chcemy dane i narzucamy typ danych StoreApiResponse i to bedzie tablica
 //   const data: StoreApiResponse[] = await response.json();
 //   console.log("daaaata", data);

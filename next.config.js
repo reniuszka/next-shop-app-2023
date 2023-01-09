@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["fakestoreapi.com"],
+    domains: ["naszsklep-api.vercel.app"],
     //dodane lepsze formaty zdj niz jpg i png dla przegladarek ktore rozumieja e formaty zamiast jpg i png
     formats: ["image/avif", "image/webp"],
     // https://nextjs.org/docs/messages/next-image-unconfigured-host

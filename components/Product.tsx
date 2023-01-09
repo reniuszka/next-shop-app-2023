@@ -1,11 +1,15 @@
 import { Rating } from "./Rating";
 import Image from "next/legacy/image";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+// import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 interface ProductDetails {
   id: number;
   title: string;
   description: string;
+  longDescription: string;
   thumbnailUrl: string;
   thumbnailAlt: string;
   rating: number;
@@ -24,6 +28,31 @@ export const ProductDetails = ({ data }: ProductDetailsProps) => {
         alt={data.thumbnailAlt}
       /> */}
       <div className="bg-white p-12">
+        {/* <Head>
+          <title>{data.title}</title>
+          <meta name="description" content="jakis opis produktu" />
+        </Head> */}
+        {/* //instead of head we use component next-seo
+        < */}
+        {/* ctrl i spacja pokazuje mi dostepne opcje, canonical mowi google jakie jest zrodlo prawdy tego produktu czyli 1 prawdziwy link */}
+        <NextSeo
+          title={data.title}
+          description={data.description}
+          canonical={`https://naszsklep.vercel.app/products/${data.id}`}
+          openGraph={{
+            url: `https://naszsklep.vercel.app/products/${data.id}`,
+            title: data.title,
+            description: data.description,
+            images: [
+              {
+                url: data.thumbnailUrl,
+                alt: data.thumbnailAlt,
+                type: "image/jpeg",
+              },
+            ],
+            siteName: "SiteName",
+          }}
+        ></NextSeo>
         <Image
           src={data.thumbnailUrl}
           width="10"
@@ -36,7 +65,13 @@ export const ProductDetails = ({ data }: ProductDetailsProps) => {
       <h2 className="p-4 text-3xl font-bold text-purple-900">{data.title}</h2>
       {/* lorem40 */}
       <p className="p-4">{data.description}</p>
-      <Rating rating={data.rating} />
+      <article className="p-4 prose lg:prose-xl">
+        <ReactMarkdown className="p-4">{data.longDescription}</ReactMarkdown>
+      </article>
+      <div className="p-4">
+        <h2>Rating:</h2>
+        <Rating rating={data.rating} />
+      </div>
     </>
   );
 };
