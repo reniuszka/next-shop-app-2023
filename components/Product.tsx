@@ -1,15 +1,18 @@
 import { Rating } from "./Rating";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 // import Head from "next/head";
 import { NextSeo } from "next-seo";
+import ZaisteReactMarkdown from "./ZaisteReactMarkdown";
+// import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MarkdownResult } from "../utils";
 
 interface ProductDetails {
   id: number;
   title: string;
   description: string;
-  longDescription: string;
+  longDescription: MarkdownResult;
   thumbnailUrl: string;
   thumbnailAlt: string;
   rating: number;
@@ -17,6 +20,7 @@ interface ProductDetails {
 interface ProductDetailsProps {
   data: ProductDetails;
 }
+
 //rename symbol do zmienienia nazwy(zaznacz i klik prawym) i powinno z automatu zmienic sie w wielu plikach
 export const ProductDetails = ({ data }: ProductDetailsProps) => {
   return (
@@ -35,6 +39,7 @@ export const ProductDetails = ({ data }: ProductDetailsProps) => {
         {/* //instead of head we use component next-seo
         < */}
         {/* ctrl i spacja pokazuje mi dostepne opcje, canonical mowi google jakie jest zrodlo prawdy tego produktu czyli 1 prawdziwy link */}
+        {/* https://developers.facebook.com/tools/debug/?q=https%3A%2F%2Fnext-shop-app-2023-git-seo-reniuszka.vercel.app%2Fproducts%2F6fbe024f-2316-4265-a6e8-d65a837e308a */}
         <NextSeo
           title={data.title}
           description={data.description}
@@ -66,7 +71,38 @@ export const ProductDetails = ({ data }: ProductDetailsProps) => {
       {/* lorem40 */}
       <p className="p-4">{data.description}</p>
       <article className="p-4 prose lg:prose-xl">
-        <ReactMarkdown className="p-4">{data.longDescription}</ReactMarkdown>
+        {/* cel wrapujemy linki w markdownie by nie odswiezalo calej strony tylko by js je podbralo. mamy prop o nazwie component i pozwala nam mapowac, jak znajdziesz a to fykonaj dana funckje */}
+        {/* moved ZAISTEMARKDOWN to new component */}
+        {/* <ReactMarkdown
+          className="p-4"
+          components={{
+            a: ({ href, ...props }) => {
+              //jesli nie ma href
+              if (!href) {
+                return <a {...props}></a>;
+                // zewnetrzny link bo ich nie trzeba wrapowac w Link
+              } else if (href?.match(externalLinkRegex)) {
+                return (
+                  <a
+                    href={href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    {...props}
+                  ></a>
+                );
+                // wewnetrzny link
+              } else {
+                return <Link href={href} {...props}></Link>;
+              }
+            },
+          }}
+        >
+          {data.longDescription}
+        </ReactMarkdown> */}
+        {/* MDXRemote zostal wrzucony do zaisteReactMarkdown */}
+        <ZaisteReactMarkdown>{data.longDescription}</ZaisteReactMarkdown>
+        {/* zamiast tego powyzej uzywam mdxremote bo on sie nie wykona na kliencie tylk0 w node za wczasu */}
+        {/* <MDXRemote {...data.longDescription} /> */}
       </article>
       <div className="p-4">
         <h2>Rating:</h2>
@@ -75,6 +111,7 @@ export const ProductDetails = ({ data }: ProductDetailsProps) => {
     </>
   );
 };
+
 //Pick - typ warunkowy, pierwszy argument to nazwa typu z ktorego czerpiemy , drugi - typ pola ktore chcemy wyciagnac title lub thumbanailUrl lub thumbnailAlt
 // extract typow => w produktListItem wybieramy tylko niektore keys typow z Product Details nastepujaco:
 type ProductListItem = Pick<

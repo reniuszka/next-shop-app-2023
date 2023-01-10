@@ -2,7 +2,9 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
 import { ProductDetails } from "../../components/Product";
 import Link from "next/link";
-
+import { serialize } from "next-mdx-remote/serialize";
+// import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MarkdownResult } from "../../utils";
 const ProductIdPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -103,11 +105,25 @@ export const getStaticProps = async ({
     `https://naszsklep-api.vercel.app/api/products//${params?.productId}`
   );
   const data: StoreApiResponse | null = await res.json();
+  if (!data) {
+    return {
+      props: {},
+      notFound: true,
+    };
+  }
   // console.log("daaaata", data);
+
+  //next-mdx-remote dla data.longDescription
+  // const skompilowanyMarkdown = await serialize(data.longDescription);
 
   return {
     props: {
-      data,
+      // to jest to samo co data lub data:data lub data: ...{data}
+      data: {
+        ...data,
+        //nadpisujemy
+        longDescription: await serialize(data.longDescription),
+      },
     },
   };
 };
@@ -118,7 +134,7 @@ interface StoreApiResponse {
   title: string;
   price: number;
   description: string;
-  longDescription: string;
+  longDescription: MarkdownResult;
   category: string;
   image: string;
   rating: {

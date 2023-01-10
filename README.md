@@ -40,10 +40,16 @@ b) push do githuba: git push
 8. yarn add --dev @tailwindcss/typography by dodac style dla markdownu bo tailwind ich nie renderuje i dodac go to pliku tailwinda.config.js
 
 9. do seo zamiast next/head i meta tagi mozna uzyc next/seo: yarn add next-seo
-   https://github.com/garmeeh/next-seo - przyklady jak dodac to do fb; uzywamy tez https://ogp.me/ ktoe pokazuja potem np w google poprawnie nasze linki w seo
+   https://github.com/garmeeh/next-seo - przyklady jak dodac to do fb; uzywamy tez https://ogp.me/ ktoe pokazuja potem np w google poprawnie nasze linki w seo= > narzedzie to sprawdzania jak ten link fb wyswietli: https://developers.facebook.com/tools/debug/?q=https%3A%2F%2Fnext-shop-app-2023-git-seo-reniuszka.vercel.app%2Fproducts%2F6fbe024f-2316-4265-a6e8-d65a837e308a
 
-   MY NOTES:
-   w Request Headers ja wysylam co rozumiem : Accept: image/avif,image/webp,image/apng,image/svg+xml,image/_,_/\*;q=0.8
+10. wydzielenie uniwersalnego seo do jednego pliku: next-seo.config.js i ew. nadpisywanie gdy cos spejclanego dla konkretnej strony
+
+11. ikona do koszyka https://heroicons.com/ i copy jsx
+
+12. paczka do markdownu by go sciagnac zawczasu poprzez getStaticProps i dzieki temu paczka uruchomi sie w kontekscie node'a i potem koszt otwaorzenia strony jest mniejszy (https://github.com/hashicorp/next-mdx-remote): yarn add next-mdx-remote -> dodaj import serialize
+
+MY NOTES:
+w Request Headers ja wysylam co rozumiem : Accept: image/avif,image/webp,image/apng,image/svg+xml,image/_,_/\*;q=0.8
 
 script : 'dev' w package json to alias na next dev
 dependencies - produkcyjne zaleznosci - potrzebne do tworzenie apki produkcyjnej
