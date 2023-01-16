@@ -7,6 +7,7 @@ import { NextSeo } from "next-seo";
 import ZaisteReactMarkdown from "./ZaisteReactMarkdown";
 // import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MarkdownResult } from "../utils";
+import { useCartState } from "./Cart/CartContext";
 
 interface ProductDetails {
   id: number;
@@ -124,6 +125,7 @@ interface ProductListItemProps {
 }
 
 export const ProductListItem = ({ data }: ProductListItemProps) => {
+  const cartState = useCartState();
   return (
     <div>
       {/* <Image
@@ -149,9 +151,30 @@ export const ProductListItem = ({ data }: ProductListItemProps) => {
           alt={data.thumbnailAlt}
         />
       </div>
-      <Link href={`/products/${data.id}/`}>
-        <h2 className="p-4 text-3xl font-bold text-yellow-600">{data.title}</h2>
-      </Link>
+      <div className="p-4">
+        <Link href={`/products/${data.id}/`}>
+          <h2 className="pb-4 text-3xl font-bold text-yellow-600">
+            {data.title}
+          </h2>
+        </Link>
+        {/* lazy and eager: my chcemy by sie wykowanala funkcja w momencie klik i dopiero wtedy wykona sie to co jest w srodku. przekazujemy do onClick funkcje ktora wykona nasz fcje z contextu i chcemy przekazac item */}
+        {/* gdybysmy ta funkcje zapisali tak to wykonala by sie ona w czasie renderowania komponentu i dupa : onClick={cartState.addItemToCart()};
+          }} */}
+
+        <button
+          onClick={() => {
+            cartState.addItemToCart({
+              id: data.id,
+              price: 21.09,
+              title: data.title,
+              count: 1,
+            });
+          }}
+          className="text-white bg-gradient-to-tr from-purple-800 p-4 border-4 border-purple-800 rounded-lg text-sm text-center m-2"
+        >
+          Dodaj do koszyka
+        </button>
+      </div>
     </div>
   );
 };

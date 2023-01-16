@@ -75,6 +75,7 @@ export default function Home() {
     // {/* <div className="flex flex-col min-h-screen bg-teal-800"> */}
     // {/* <Header /> */}
     <Main>
+      <p> bla bla bla</p>
       <ProductListItem data={DATA} />
       {/* <ProductDetails data={DATA} /> */}
     </Main>
