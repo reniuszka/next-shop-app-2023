@@ -48,7 +48,14 @@ b) push do githuba: git push
 
 12. paczka do markdownu by go sciagnac zawczasu poprzez getStaticProps i dzieki temu paczka uruchomi sie w kontekscie node'a i potem koszt otwaorzenia strony jest mniejszy (https://github.com/hashicorp/next-mdx-remote): yarn add next-mdx-remote -> dodaj import serialize
 
+13. add context
+
+14. chech czy TS ma bledy: yarn tsc --noEmit
+15. chech czy TS ma bledy: yarn tsc --watch --noEmit //watch na biezaco
+
 MY NOTES:
+
+alt+shift+f12 by zoabaczyc all refences z danego typu
 w Request Headers ja wysylam co rozumiem : Accept: image/avif,image/webp,image/apng,image/svg+xml,image/_,_/\*;q=0.8
 
 script : 'dev' w package json to alias na next dev
